@@ -54,12 +54,56 @@ alert(`The biggest number is ${maxNumber}`);
 
 // Task 5
 
-let triangleSideA = +prompt("Input the length of the first side");
-let triangleSideB = +prompt("Input the length of the second side");
-let triangleSideC = +prompt("Input the length of the third side");
+//  DATA INPUT AND VALIDATION
 
-if( triangleSideA + triangleSideC > triangleSideB) {
-    console.log("The triangle can exist");
-} else {
-    console.log("The triangle can not exist");
+const triangleSideA = prompt("Input the length of the first side");
+const triangleSideB = prompt("Input the length of the second side");
+const triangleSideC = prompt("Input the length of the third side");
+
+let errorText = "";
+
+if (triangleSideA == null || triangleSideB == null || triangleSideC == null) {
+    errorText = "Sorry that you do not want to create triangle";
+    alert(errorText);
+    throw errorText;
 }
+if (isNaN(triangleSideA) || isNaN(triangleSideB) || isNaN(triangleSideC)) {
+    errorText = "Sorry, the length must be valid number";
+    alert(errorText);
+    throw errorText;
+}
+if (triangleSideA.trim() === "" || triangleSideB.trim() === "" || triangleSideC.trim() === "") {
+    errorText = "Sorry, the length must be non-empty string";
+    alert(errorText);
+    throw errorText;
+}
+
+if (+triangleSideA === 0 || +triangleSideB === 0 || +triangleSideC === 0) {
+    errorText = "Sorry, the length must be not zero";
+    alert(errorText);
+    throw errorText;
+}
+
+if (+triangleSideA < 0 || +triangleSideB < 0 || +triangleSideC < 0) {
+    errorText = "Sorry, the length must be positive integer number";
+    alert(errorText);
+    throw errorText;
+}
+
+//   DATA PROCESSING
+
+let resultMessage = "";
+
+if (triangleSideA + triangleSideB > triangleSideC) {
+    resultMessage = "The triangle can exist";
+} else if (triangleSideA + triangleSideC > triangleSideB) {
+    resultMessage = "The triangle can exist";
+} else if (triangleSideB + triangleSideC > triangleSideA) {
+    resultMessage = "The triangle can exist";
+} else {
+    resultMessage = "The triangle can not exist";
+}
+
+// DATA OUTPUT
+
+alert(resultMessage);
